@@ -25,11 +25,11 @@ public class Conexion {
       try{
          //obtenemos el driver de para mysql
          Class.forName("com.mysql.jdbc.Driver");
-         //obtenemos la conexi�n
+         //obtenemos la conexiï¿½n
          conn = DriverManager.getConnection(url,login,password);
 
          if (conn!=null){
-           // System.out.println("Conección a base de datos "+bd+" OK");
+           // System.out.println("ConecciÃ³n a base de datos "+bd+" OK");
          }
       }
       catch(SQLException e){
@@ -40,7 +40,7 @@ public class Conexion {
          System.out.println(e);
       }
    }
-   /**Permite retornar la conexi�
+   /**Permite retornar la conexiï¿½
      * @return n*/
    public Connection getConnection(){
       return conn;
@@ -87,7 +87,7 @@ public class Conexion {
        try{
        Statement st = conect.createStatement();
        st.executeUpdate(sql);
-                        System.out.println("Se a eliminado exitosamente"); 
+       System.out.println("Se a eliminado exitosamente"); 
        //desconectar();
        return true;
        }catch(SQLException E){
@@ -98,19 +98,18 @@ public class Conexion {
    
    public boolean veri_act(int a){
        ResultSet rs=null;
-       String [] datos = new String [6];
        Connection conect= getConnection();
        try{
        Statement st = conect.createStatement();		
        rs=st.executeQuery("Select * from fichas_libros where Codigo like'%"+a+"%'");
-                            if(rs.next()==false){
-                                System.out.println("No existe un libro con codigo: "+a);
-                                return false;
-                            }else{
-                                return true;
-                            }
+          if(rs.next()==false){
+               System.out.println("No existe un libro con codigo: "+a);
+               return false;
+          }else{
+               return true;
+          }
        }catch(SQLException E){
-           System.out.println("No existe ese libro");
+           System.out.println("Error al verificar libro");
        return false;
        }
    }
@@ -125,7 +124,7 @@ public class Conexion {
        //desconectar();
        return rs;
        }catch(SQLException E){
-           System.out.println("no existe ese libro");
+           System.out.println("Error al eliminar libro");
        return rs;
        }
     }
@@ -158,14 +157,14 @@ public class Conexion {
                                     System.out.println("Se a prestado exitosamente el libro: '"+datos[0]+"' con Codigo: '"+datos[4]+"'");
                                 }
                                 else{
-                                    System.out.println("aca va el error");
+                                    System.out.println("Hubo un error al actualizar cantidad");
                                 }
                                 //desconectar();
                                 return true;}
                             }
            return false;
        }catch(SQLException E){
-           System.out.println("No existe ese libro");
+           System.out.println("Error al prestar libro");
        return false;
        }
     }   
@@ -185,7 +184,7 @@ public class Conexion {
        //desconectar();
        return true;
        }catch(SQLException E){
-           System.out.println("No existe ese libro");
+           System.out.println("error al devolver libro");
        return false;
        }
     }   

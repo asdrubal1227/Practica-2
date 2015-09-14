@@ -75,7 +75,9 @@ public class Practica2 {
                     break;
                     case 3:
                         codigo("Eliminar");
-                        conectar.sup_libro(gestion);
+                        if(conectar.veri_act(gestion.getcodigo())){
+                        conectar.sup_libro(gestion); 
+                        }      
                     break;
                     case 4:
                         codigo("Buscar");
